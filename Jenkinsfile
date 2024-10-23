@@ -6,11 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('clone') {
-            steps {
-                git branch: 'origin', url: 'https://github.com/medAmineRg/call_family.git'
-            }
-        }
 
         stage('build') {
             steps {
