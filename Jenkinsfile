@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('clone') {
             steps {
-                git 'https://github.com/medev/callfamily.git'
+                git branch: 'origin', url: 'https://github.com/medAmineRg/call_family.git'
             }
         }
 
