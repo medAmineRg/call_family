@@ -1,0 +1,5 @@
+**/target/
+!target/callfamily-1.0.jar
+.git
+.gitignore
+README.md

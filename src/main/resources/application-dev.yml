@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+app:
+  mail:
+    user: rguig.medamine@gmail.com
+    password: alrkepivgcwcleby
+
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/subscribres
+    username: "postgres"
+    password: "justForWork"
+
+logging:
+  level:
+    org.springframework.web: info

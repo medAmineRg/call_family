@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: ${spring_datasource_url}
+    username: ${spring_datasource_username}
+    password: ${spring_datasource_password}
+
+  jpa:
+    hibernate:
+      ddl-auto: ${spring_jpa_hibernate_ddl_auto}
+    show-sql: ${spring_jpa_show_sql}
+
+app:
+  mail:
+    user: ${spring_mail_username}
+    password: ${spring_mail_password}

@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    container_name: callfamily_app
+    ports:
+      - "8081:8081"
+    environment:
+      spring_datasource_url: jdbc:postgresql://db:5432/callfamily
+      spring_datasource_username: postgres
+      spring_datasource_password: postgres
+      spring_jpa_hibernate_ddl_auto: update
+      spring_jpa_show_sql: "true"
+      spring_mail_host: smtp.gmail.com
+      spring_mail_port: 587
+      spring_mail_username: rguig.medamine@gmail.com
+      spring_mail_password: alrkepivgcwcleby
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    container_name: callfamily_db
+    environment:
+      POSTGRES_DB: callfamily
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
