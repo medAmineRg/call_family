@@ -31,6 +31,11 @@ pipeline {
     post {
         always {
             echo 'Pipeline finished.'
+            sh 'docker compose down'
+            sh 'docker system prune -f'
+
+
+
         }
         success {
             echo 'Build and deployment successful!'
