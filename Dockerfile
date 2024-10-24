@@ -1,28 +1,22 @@
 # Stage 1: Build stage
-FROM eclipse-temurin:17-jdk-jammy as builder
+FROM maven:3.9-eclipse-temurin-17 as builder
 
-# Set working directory
+# Copy all files to /app
+COPY . /app
 WORKDIR /app
 
-# Copy only the jar file
-COPY target/callfamily-1.0.jar app.jar
-
-# Extract the layers
-RUN java -Djarmode=layertools -jar app.jar extract
+# Clean and build the project, output logs
+RUN mvn clean install -DskipTests
 
 # Stage 2: Runtime stage
 FROM eclipse-temurin:17-jre-jammy
-
 WORKDIR /app
 
-# Copy layers from builder stage
-COPY --from=builder /app/dependencies/ ./
-COPY --from=builder /app/spring-boot-loader/ ./
-COPY --from=builder /app/snapshot-dependencies/ ./
-COPY --from=builder /app/application/ ./
+# Copy the JAR from the builder stage
+COPY --from=builder /app/target/callfamily-1.0.jar ./app.jar
 
-# Expose port
+# Expose port 8081
 EXPOSE 8081
 
 # Run the application
-ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
