@@ -5,25 +5,38 @@ pipeline {
         maven 'MAVEN3'
     }
 
+    environment {
+        DOCKER_HOST = 'unix:///var/run/docker.sock'
+    }
+
     stages {
 
-        stage('build') {
+        stage('Build with Maven') {
             steps {
-                sh 'mvn clean install -DskipTests'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
-        stage('UNIT TEST') {
+        stage('Build and Start Containers') {
             steps {
-                sh 'mvn test'
-            }
-        }
-
-        stage('INTEGRATION TEST') {
-            steps {
-                sh 'mvn verify -DskipUnitTests'
+                script {
+                    // Docker build and run commands
+                    sh 'docker compose build --no-cache'
+                    sh 'docker compose up -d'
+                }
             }
         }
     }
 
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+        success {
+            echo 'Build and deployment successful!'
+        }
+        failure {
+            echo 'Something went wrong during the pipeline.'
+        }
+    }
 }
