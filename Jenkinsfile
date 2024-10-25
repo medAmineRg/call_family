@@ -17,6 +17,12 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
         stage('Build and Start Containers') {
             steps {
                 script {
@@ -24,12 +30,6 @@ pipeline {
                     sh 'docker compose build --no-cache'
                     sh 'docker compose up -d'
                 }
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                sh 'mvn test'
             }
         }
 

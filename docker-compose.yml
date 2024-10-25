@@ -7,15 +7,15 @@ services:
     ports:
       - "8081:8081"
     environment:
-      spring_datasource_url: jdbc:postgresql://db:5432/callfamily
-      spring_datasource_username: postgres
-      spring_datasource_password: postgres
-      spring_jpa_hibernate_ddl_auto: update
-      spring_jpa_show_sql: "true"
-      spring_mail_host: smtp.gmail.com
-      spring_mail_port: 587
-      spring_mail_username: rguig.medamine@gmail.com
-      spring_mail_password: alrkepivgcwcleby
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/callfamily
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_MAIL_HOST: smtp.gmail.com
+      SPRING_MAIL_PORT: 587
+      SPRING_MAIL_USERNAME: rguig.medamine@gmail.com
+      SPRING_MAIL_PASSWORD: alrkepivgcwcleby
     depends_on:
       - db
 
