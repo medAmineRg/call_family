@@ -3,6 +3,8 @@ services:
   app:
     build: .
     container_name: callfamily_app
+    pull_policy: always
+    image: mohamed99amine/student-api
     ports:
       - "8081:8081"
     environment:
