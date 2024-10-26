@@ -41,9 +41,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                 }
-
-                sh 'docker tag callfamily_app:latest $DOCKER_REGISTRY/callfamily_app:latest'
-                sh 'docker push $DOCKER_REGISTRY/callfamily_app:latest'
+                sh 'docker push mohamed99amine/callfamily_app:latest'
             }
         }
 
