@@ -46,18 +46,16 @@ pipeline {
         }
 
     }
-
-}
-
-post {
-    always {
-        echo 'Pipeline finished.'
-        sh 'docker system prune -a --volumes -f'
-    }
-    success {
-        echo 'Build and deployment successful!'
-    }
-    failure {
-        echo 'Something went wrong during the pipeline.'
+    post {
+        always {
+            echo 'Pipeline finished.'
+            sh 'docker system prune -a --volumes -f'
+        }
+        success {
+            echo 'Build and deployment successful!'
+        }
+        failure {
+            echo 'Something went wrong during the pipeline.'
+        }
     }
 }
