@@ -38,9 +38,10 @@ pipeline {
                 DOCKER_REGISTRY = 'mohamed99amine'
             }
             steps {
-                withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-                    sh 'docker login -u mohamed99amine -p ${dockerhub}'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                 }
+
                 sh 'docker tag callfamily_app:latest $DOCKER_REGISTRY/callfamily_app:latest'
                 sh 'docker push $DOCKER_REGISTRY/callfamily_app:latest'
             }
