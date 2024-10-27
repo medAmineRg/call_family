@@ -45,6 +45,12 @@ pipeline {
             }
         }
 
+        stage('Deploy to Production') {
+            steps {
+                sh 'scp docker-compose.yml root@91.108.113.159:/tmp'
+            }
+        }
+
     }
     post {
         always {
